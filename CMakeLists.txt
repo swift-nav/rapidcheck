@@ -4,6 +4,7 @@ enable_testing()
 
 option(RC_ENABLE_TESTS "Build RapidCheck tests" OFF)
 option(RC_ENABLE_EXAMPLES "Build RapidCheck examples" OFF)
+option(RC_ENABLE_RTTI "Build RapidCheck with RTTI" ON)
 
 if(MSVC)
   # /bigobj - some object files become very large so we need this
@@ -64,6 +65,10 @@ else()
 endif()
 
 target_include_directories(rapidcheck PUBLIC include)
+
+if(RC_ENABLE_RTTI)
+  add_definitions(-DRC_USE_RTTI)
+endif()
 
 add_subdirectory(ext)
 
