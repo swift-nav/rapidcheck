@@ -95,7 +95,11 @@ inline uint64_t avalanche(uint64_t x) {
 /// Returns a bitmask of the given type with the lowest `nbits` bits set to 1
 /// and the rest set to 0.
 template <typename T>
-constexpr T bitMask(int nbits) {
+constexpr T bitMask(int nbits) 
+#ifdef __clang__
+  __attribute__((no_sanitize("unsigned-shift-base")))
+#endif
+{
   using UT = typename std::make_unsigned<T>::type;
   using UTP = typename std::common_type<UT, unsigned>::type;
   // There are two pieces of undefined behavior we're avoiding here,
