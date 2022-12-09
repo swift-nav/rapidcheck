@@ -42,6 +42,7 @@ T BitStream<Source>::next(int nbits, std::false_type)
 #ifdef __clang__
   __attribute__((no_sanitize("implicit-signed-integer-truncation"))) 
   __attribute__((no_sanitize("implicit-integer-sign-change"))) 
+  __attribute__((no_sanitize("shift-exponent")))
 #endif
 {
   using SourceType = decltype(m_source.next());
