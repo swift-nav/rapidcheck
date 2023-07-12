@@ -46,6 +46,7 @@ T BitStream<Source>::next(int nbits, std::false_type)
 #endif
 {
   using SourceType = decltype(m_source.next());
+  nbits = std::min(nbits, numBits<T>());
 
   if (nbits == 0) {
     return 0;
