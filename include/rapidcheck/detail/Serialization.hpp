@@ -1,5 +1,6 @@
 #include "Serialization.h"
 
+#include <cstdint>
 #include <limits>
 
 namespace rc {
@@ -201,8 +202,9 @@ Iterator deserializeCompact(Iterator begin, Iterator end, T &output) {
 }
 
 template <typename InputIterator, typename OutputIterator>
-OutputIterator
-serializeCompact(InputIterator begin, InputIterator end, OutputIterator output) {
+OutputIterator serializeCompact(InputIterator begin,
+                                InputIterator end,
+                                OutputIterator output) {
   const std::uint64_t numElements = std::distance(begin, end);
   auto oit = serializeCompact(numElements, output);
   for (auto it = begin; it != end; it++) {
