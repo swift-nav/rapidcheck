@@ -46,6 +46,9 @@ uint64_t mulDiv(uint64_t a, uint32_t b, uint32_t c) {
 
 } // namespace
 
+#if defined(__clang__)
+__attribute__((no_sanitize("undefined"))) 
+#endif
 uint64_t scaleInteger(uint64_t x, int size) {
   const auto clampedSize = std::min(kNominalSize, size);
   return mulDiv(x, clampedSize, kNominalSize);

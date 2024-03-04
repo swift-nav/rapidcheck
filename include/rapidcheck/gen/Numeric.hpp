@@ -5,6 +5,7 @@
 #include "rapidcheck/shrink/Shrink.h"
 #include "rapidcheck/gen/Transform.h"
 #include "rapidcheck/gen/detail/ScaleInteger.h"
+#include <cstring>
 
 namespace rc {
 namespace gen {
@@ -88,6 +89,9 @@ struct DefaultArbitrary<bool> {
 } // namespace detail
 
 template <typename T>
+#if defined(__clang__)
+__attribute__((no_sanitize("undefined"))) 
+#endif
 Gen<T> inRange(T min, T max) {
   return [=](const Random &random, int size) {
     if (max <= min) {
@@ -97,9 +101,16 @@ Gen<T> inRange(T min, T max) {
       throw GenerationFailure(msg);
     }
 
+    int64_t i_min = static_cast<int64_t>(min);
+    Random::Number u_min;
+    memcpy(&u_min, &i_min, sizeof(u_min));
+    int64_t i_max = static_cast<int64_t>(max);
+    Random::Number u_max;
+    memcpy(&u_max, &i_max, sizeof(u_max));
+
     const auto rangeSize =
-        detail::scaleInteger(static_cast<Random::Number>(max) -
-                                 static_cast<Random::Number>(min) - 1,
+        detail::scaleInteger(u_max -
+                                 u_min - 1,
                              size) +
         1;
     const auto value =
