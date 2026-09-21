@@ -1,5 +1,6 @@
 #pragma once
 
+#include <exception>
 #include "rapidcheck/detail/FunctionTraits.h"
 #include "rapidcheck/gen/detail/ExecRaw.h"
 #include "rapidcheck/detail/PropertyContext.h"

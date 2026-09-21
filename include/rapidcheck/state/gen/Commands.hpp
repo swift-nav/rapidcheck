@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iterator>
 #include <algorithm>
 
 #include "rapidcheck/Random.h"

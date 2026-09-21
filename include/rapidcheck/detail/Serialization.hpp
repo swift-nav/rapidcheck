@@ -1,4 +1,6 @@
 #include "Serialization.h"
+#include <iterator>
+#include <algorithm>
 
 #include <cstdint>
 #include <limits>

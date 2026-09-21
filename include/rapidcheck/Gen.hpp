@@ -1,5 +1,6 @@
 #pragma once
 
+#include <exception>
 #include <cassert>
 
 #include "rapidcheck/detail/Any.h"

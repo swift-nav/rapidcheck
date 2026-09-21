@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iterator>
 #include "rapidcheck/seq/Transform.h"
 
 namespace rc {
