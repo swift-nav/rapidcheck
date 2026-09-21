@@ -1,4 +1,5 @@
 #include "StringSerialization.h"
+#include <iterator>
 
 #include "Base64.h"
 #include "ParseException.h"

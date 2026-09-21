@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iterator>
 namespace rc {
 namespace gen {
 namespace detail {
